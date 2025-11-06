@@ -630,6 +630,92 @@
             font-size: 2rem;
         }
 
+        /* Website Design Advice Section */
+        .advice-section {
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(17, 34, 64, 0.9)), url('design.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .advice-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .advice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .advice-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .advice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.2);
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .advice-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .zaki {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+        .zaki:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(114, 255, 107, 0.2);
+            border-color: rgba(107, 255, 117, 0.3);
+        }
+        .zaki h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: rgb(0, 255, 13);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .advice-card h3 i {
+            font-size: 1.2rem;
+        }
+
+        .advice-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .advice-list li {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .advice-list li strong {
+            color: var(--text-primary);
+        }
+
         /* Contact Section */
         .contact-content {
             display: flex;
@@ -795,6 +881,10 @@
             .hero h2 {
                 font-size: 2.8rem;
             }
+            
+            .advice-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -849,10 +939,96 @@
             .specialties-grid, .departments-grid, .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .advice-card {
+                padding: 20px;
+            }
+        }
+
+        /* Fullscreen Modal Styles */
+        .fullscreen-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            display: block;
+            margin: auto;
+            max-width: 90%;
+            max-height: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.8); }
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ccc;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
         }
 
 
 
+
+
+
+
+
+
+        .dedication {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent);
+}
+
+.dedication p {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 0;
+}
     </style>
 </head>
 <body>
@@ -880,6 +1056,7 @@
                     <li><a href="#mi">Explore MI</a></li>
                     <li><a href="#st">Explore ST</a></li>
                     <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#advice">Web Design Advice</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -891,7 +1068,7 @@
         <div class="container hero-content">
             <h2>ENSTA DERGANA</h2>
             <p>National Higher School of Advanced Technology</p>
-            <p>Excellence in Engineering</p>
+            <p>Excellence in Engineering Education and Research</p>
             <a href="#specialties" class="btn">Discover Our Programs</a>
         </div>
     </section>
@@ -1058,255 +1235,162 @@
         </div>
     </section>
 
-  <!-- Gallery Section -->
-<section class="gallery" id="gallery">
-    <div class="container">
-        <div class="section-title">
-            <h2>Campus Gallery</h2>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Campus Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="1.jpg" >
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="2.jpg" >
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="3.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="4.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="5.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="6.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="7.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="8.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="9.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="10.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="11.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="12.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="13.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="14.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="15.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="16.jpg">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="1.jpg" >
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
+        
+        <!-- Fullscreen Modal -->
+        <div id="fullscreen-modal" class="fullscreen-modal">
+            <span class="close-btn">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div class="modal-caption"></div>
+        </div>
+    </section>
+
+    <!-- Website Design Advice Section -->
+    <section class="advice-section" id="advice">
+        <div class="container">
+            <div class="section-title">
+                <h2>Website Design Advice</h2>
             </div>
-            <div class="gallery-item">
-                <img src="2.jpg" >
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="3.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="4.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="5.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="6.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="7.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="8.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="9.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="10.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="11.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="12.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="13.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="14.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="15.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <img src="16.jpg">
-                <div class="gallery-overlay">
-                    <i class="fas fa-search-plus"></i>
+            <div class="advice-content">
+                <div class="advice-grid">
+                    <div class="zaki">
+                        <h3><i class="fas fa-check-circle"></i> Things to Do</h3>
+                        <ol class="advice-list">
+                            <li><strong>Plan your content structure</strong> - Create a clear information architecture before designing.</li>
+                            <li><strong>Prioritize mobile responsiveness</strong> - Ensure your site works well on all devices.</li>
+                            <li><strong>Optimize for performance</strong> - Compress images and minimize code for faster loading.</li>
+                            <li><strong>Use consistent branding</strong> - Maintain consistent colors, fonts, and design elements.</li>
+                            <li><strong>Implement intuitive navigation</strong> - Make it easy for users to find what they need.</li>
+                            <li><strong>Include clear calls-to-action</strong> - Guide users toward desired actions.</li>
+                            <li><strong>Ensure accessibility</strong> - Make your site usable for people with disabilities.</li>
+                            <li><strong>Test thoroughly</strong> - Check functionality across different browsers and devices.</li>
+                            <li><strong>Optimize for SEO</strong> - Use proper headings, meta tags, and semantic HTML.</li>
+                            <li><strong>Keep content updated</strong> - Regularly refresh content to maintain relevance.</li>
+                        </ol>
+                    </div>
+                    <div class="advice-card">
+                        <h3><i class="fas fa-times-circle"></i> Things to Avoid</h3>
+                        <ol class="advice-list">
+                            <li><strong>Don't overload with animations</strong> - Use animations sparingly to avoid distraction.</li>
+                            <li><strong>Avoid cluttered layouts</strong> - Use white space effectively for better readability.</li>
+                            <li><strong>Don't use too many fonts</strong> - Stick to 2-3 complementary fonts maximum.</li>
+                            <li><strong>Avoid auto-playing media</strong> - Let users control audio and video playback.</li>
+                            <li><strong>Don't ignore loading times</strong> - Users will leave if pages load too slowly.</li>
+                            <li><strong>Avoid broken links</strong> - Regularly check and fix any broken navigation.</li>
+                            <li><strong>Don't use unclear navigation</strong> - Make menu labels descriptive and intuitive.</li>
+                            <li><strong>Avoid inaccessible color contrasts</strong> - Ensure text is readable against backgrounds.</li>
+                            <li><strong>Don't forget about security</strong> - Implement HTTPS and protect against vulnerabilities.</li>
+                            <li><strong>Avoid outdated design trends</strong> - Keep your design modern but timeless.</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Fullscreen Modal -->
-    <div id="fullscreen-modal" class="fullscreen-modal">
-        <span class="close-btn">&times;</span>
-        <img class="modal-content" id="modal-img">
-        <div class="modal-caption"></div>
-    </div>
-</section>
-
-<style>
-/* Fullscreen Modal Styles */
-.fullscreen-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.modal-content {
-    display: block;
-    margin: auto;
-    max-width: 90%;
-    max-height: 80%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: zoomIn 0.3s;
-}
-
-@keyframes zoomIn {
-    from { transform: translate(-50%, -50%) scale(0.8); }
-    to { transform: translate(-50%, -50%) scale(1); }
-}
-
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1001;
-    transition: 0.3s;
-}
-
-.close-btn:hover {
-    color: #ccc;
-}
-
-.modal-caption {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-size: 18px;
-    padding: 10px;
-}
-
-/* Gallery Item Styles */
-
-
-
-
-
-
-.gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-overlay i {
-    color: white;
-    font-size: 24px;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Get modal elements
-    const modal = document.getElementById('fullscreen-modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalCaption = document.querySelector('.modal-caption');
-    const closeBtn = document.querySelector('.close-btn');
-    
-    // Get all gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    // Add click event to each gallery item
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const img = this.querySelector('img');
-            modal.style.display = 'block';
-            modalImg.src = img.src;
-            modalCaption.textContent = img.alt;
-        });
-    });
-    
-    // Close modal when clicking the close button
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-    
-    // Close modal when clicking outside the image
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
-        }
-    });
-});
-</script>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -1342,13 +1426,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="social-links">
                         <a href="https://www.facebook.com/ENSTA.Alger" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        
                         <a href="https://www.instagram.com/ensta.alger/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        
                     </div>
                 </div>
                 <div class="map">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3087.5729720744994!2d3.256288575707297!3d36.77625597225397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e457e206a4adf%3A0x2dedffeaea98475f!2sNational%20Higher%20School%20of%20Advanced%20Technologies!5e1!3m2!1sfr!2sdz!4v1762373699613!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3087.5729720744994!2d3.256288575707297!3d36.77625597225397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128e457e206a4adf%3A0x2dedffeaea98475f!2sNational%20Higher%20School%20of%20Advanced%20Technologies!5e1!3m2!1sfr!2sdz!4v1762373699613!5m2!1sfr!2sdz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1361,9 +1445,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>National Higher School of Advanced Technology of Dergana, an institution of excellence in training engineers.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/ENSTA.Alger" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        
                         <a href="https://www.instagram.com/ensta.alger/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        
                     </div>
                 </div>
                 <div class="footer-column">
@@ -1376,6 +1458,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li><a href="#mi">Explore MI</a></li>
                         <li><a href="#st">Explore ST</a></li>
                         <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#advice">Web Design Advice</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -1409,6 +1492,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>&copy; 2025 ENSTA Dergana - National Higher School of Advanced Technology. All rights reserved.</p>
                 <div class="developers">
                     <p>Website developed by <h3><a href="#">TADJINE Mohamed &nbsp</a> and <a href="#">&nbsp MOKRANI Zakaria</a></h3></p>
+                    <div class="dedication">
+    <p>This project was undertaken in response to an assignment set by our English professor, Ms Ferhah.
+
+Her guidance and instruction were the catalyst for the creation of this website. We extend our sincere gratitude for the opportunity to apply our skills in a practical and comprehensive manner.
+
+Sincerely,
+
+TADJINE Mohamed & MOKRANI Zakaria (A4)</p>
+</div>
                 </div>
             </div>
         </div>
@@ -1456,6 +1548,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.style.boxShadow = 'none';
             }
         });
+
+        // Gallery Modal Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            const modal = document.getElementById('fullscreen-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.querySelector('.modal-caption');
+            const closeBtn = document.querySelector('.close-btn');
+            
+            // Get all gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            // Add click event to each gallery item
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    modal.style.display = 'block';
+                    modalImg.src = img.src;
+                    modalCaption.textContent = img.alt;
+                });
+            });
+            
+            // Close modal when clicking the close button
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'block') {
+                    modal.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
-</html> 
+</html>
